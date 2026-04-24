@@ -1,0 +1,79 @@
+{
+  "test_name": "conversation_with_tools",
+  "description": "Conversation test with tool usage",
+  "sonic_model_id": "nova-sonic",
+  "sonic_system_prompt": "You are a helpful travel assistant. Use tools to provide accurate information about bookings, destinations, and rewards.",
+  "sonic_inference_config": {
+    "max_tokens": 1024,
+    "temperature": 0.7,
+    "top_p": 0.9
+  },
+  "sonic_tool_config": {
+    "tools": [
+      {
+        "toolSpec": {
+          "name": "getBookingDetails",
+          "description": "Retrieve booking details for a customer",
+          "inputSchema": {
+            "json": {
+              "type": "object",
+              "properties": {
+                "booking_id": {
+                  "type": "string",
+                  "description": "The booking confirmation number"
+                }
+              },
+              "required": ["booking_id"]
+            }
+          }
+        }
+      },
+      {
+        "toolSpec": {
+          "name": "searchDestinations",
+          "description": "Search for travel destinations and get recommendations",
+          "inputSchema": {
+            "json": {
+              "type": "object",
+              "properties": {
+                "query": {
+                  "type": "string",
+                  "description": "Destination search query"
+                }
+              },
+              "required": ["query"]
+            }
+          }
+        }
+      },
+      {
+        "toolSpec": {
+          "name": "getRewardsBalance",
+          "description": "Get rewards points balance and tier information",
+          "inputSchema": {
+            "json": {
+              "type": "object",
+              "properties": {
+                "account_id": {
+                  "type": "string",
+                  "description": "Optional account ID"
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "tool_choice": {
+      "any": {}
+    }
+  },
+  "interaction_mode": "scripted",
+  "scripted_messages": ["what would be the recommendations for Paris?"],
+  "max_turns": 1,
+  "turn_delay": 1.0,
+  "log_audio": true,
+  "log_text": true,
+  "log_tools": true,
+  "output_directory": "results"
+}

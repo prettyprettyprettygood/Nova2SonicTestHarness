@@ -1,0 +1,76 @@
+{
+  "test_name": "all_options_example",
+  "description": "Example config showing every available option",
+  "sonic_model_id": "nova-sonic",
+  "sonic_region": "us-east-1",
+  "sonic_endpoint_uri": null,
+  "sonic_system_prompt": "You are a helpful travel assistant. Use tools to provide accurate information. Keep responses short, 1-2 sentences. You are a spoken agent.",
+  "sonic_voice_id": "tiffany",
+  "sonic_inference_config": {
+    "max_tokens": 1024,
+    "temperature": 0.7,
+    "top_p": 0.9
+  },
+  "sonic_tool_config": {
+    "tools": [
+      {
+        "toolSpec": {
+          "name": "getBookingDetails",
+          "description": "Retrieve booking details for a customer",
+          "inputSchema": {
+            "json": {
+              "type": "object",
+              "properties": {
+                "booking_id": {
+                  "type": "string",
+                  "description": "The booking confirmation number"
+                }
+              },
+              "required": [
+                "booking_id"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "tool_choice": {
+      "auto": {}
+    }
+  },
+  "user_model_id": "claude-haiku",
+  "user_system_prompt": "You are a customer asking about your booking BK-12345. Be natural and conversational. Keep responses under 2000 characters.",
+  "user_max_tokens": 1024,
+  "user_temperature": 1.0,
+  "interaction_mode": "bedrock",
+  "scripted_messages": [],
+  "max_turns": 3,
+  "turn_delay": 0,
+  "log_audio": true,
+  "log_text": true,
+  "log_tools": true,
+  "output_directory": "results",
+  "log_events": true,
+  "auto_evaluate": true,
+  "evaluation_criteria": {
+    "user_goal": "Get booking details for BK-12345",
+    "assistant_objective": "Provide accurate booking information using tools",
+    "evaluation_aspects": [
+      "Goal Achievement",
+      "Tool Usage",
+      "Response Accuracy",
+      "Conversation Flow",
+      "Voice Formatting"
+    ]
+  },
+  "log_judge_prompts": true,
+  "tool_registry_module": "examples.example_with_tool_registry",
+  "input_mode": "polly",
+  "polly_voice_id": "Matthew",
+  "polly_engine": "neural",
+  "polly_region": null,
+  "record_conversation": true,
+  "enable_session_continuation": true,
+  "transition_threshold_seconds": 360.0,
+  "audio_buffer_duration_seconds": 3.0
+}

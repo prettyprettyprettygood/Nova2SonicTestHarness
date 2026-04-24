@@ -1,0 +1,10 @@
+{
+  "test_name": "dataset_customer_support",
+  "description": "Run customer support dataset entries as scripted sessions",
+  "sonic_model_id": "nova-sonic",
+  "sonic_region": "us-east-1",
+  "sonic_system_prompt": "You are a helpful customer support agent. Assist users with their questions and use tools when appropriate.",
+  "sonic_voice_id": "matthew",
+  "dataset_path": "datasets/example_customer_support.jsonl",
+  "auto_evaluate": true
+}

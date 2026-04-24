@@ -1,0 +1,106 @@
+{
+  "test_name": "conversation_with_tools_polly",
+  "description": "Conversation test with tool usage and Polly TTS audio input",
+  "sonic_model_id": "nova-sonic",
+  "sonic_voice_id": "tiffany",
+  "sonic_system_prompt": "You are a helpful travel assistant. Use tools to provide accurate information about bookings, destinations, and rewards. Keep your responses short max 1-2 sentences. Remember you are a spoken agent.",
+  "sonic_inference_config": {
+    "max_tokens": 1024,
+    "temperature": 0.7,
+    "top_p": 0.9
+  },
+  "sonic_tool_config": {
+    "tools": [
+      {
+        "toolSpec": {
+          "name": "getBookingDetails",
+          "description": "Retrieve booking details for a customer",
+          "inputSchema": {
+            "json": {
+              "type": "object",
+              "properties": {
+                "booking_id": {
+                  "type": "string",
+                  "description": "The booking confirmation number"
+                }
+              },
+              "required": [
+                "booking_id"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "toolSpec": {
+          "name": "searchDestinations",
+          "description": "Search for travel destinations and get recommendations",
+          "inputSchema": {
+            "json": {
+              "type": "object",
+              "properties": {
+                "query": {
+                  "type": "string",
+                  "description": "Destination search query"
+                }
+              },
+              "required": [
+                "query"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "toolSpec": {
+          "name": "getRewardsBalance",
+          "description": "Get rewards points balance and tier information",
+          "inputSchema": {
+            "json": {
+              "type": "object",
+              "properties": {
+                "account_id": {
+                  "type": "string",
+                  "description": "Optional account ID"
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "tool_choice": {
+      "auto": {}
+    }
+  },
+  "input_mode": "polly",
+  "polly_voice_id": "Matthew",
+  "polly_engine": "neural",
+  "record_conversation": true,
+  "user_model_id": "claude-haiku",
+  "user_system_prompt": "You are a user asking about travel bookings, destinations, and rewards points. Be natural and conversational. You should ask about Paris and then your rewards once you get response. Keep responses less than 2000 characters. Remember you are talking on the phone. Don't generate any markdown.",
+  "user_max_tokens": 512,
+  "user_temperature": 1.0,
+  "interaction_mode": "bedrock",
+  "scripted_messages": [],
+  "max_turns": 2,
+  "turn_delay": 0,
+  "log_audio": true,
+  "log_text": true,
+  "log_tools": true,
+  "output_directory": "results",
+  "auto_evaluate": false,
+  "log_events": true,
+  "evaluation_criteria": {
+    "user_goal": "Ask about Paris destinations and check rewards balance",
+    "assistant_objective": "Provide helpful travel assistance using available tools",
+    "evaluation_aspects": [
+      "Goal Achievement",
+      "Tool Usage",
+      "Response Accuracy",
+      "Conversation Flow",
+      "Voice Formatting"
+    ]
+  },
+  "tool_registry_module": "examples.example_with_tool_registry"
+}

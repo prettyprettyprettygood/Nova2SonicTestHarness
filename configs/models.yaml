@@ -1,0 +1,33 @@
+# Model ID mapping
+# Maps short alias -> actual Bedrock model ID
+# Used by bedrock_model_client.py (user simulator) and sonic_stream_manager.py
+
+# User simulator models (via Bedrock Converse API)
+user_models:
+  claude-haiku:
+    model_id: "us.anthropic.claude-haiku-4-5-20251001-v1:0"
+    region: "us-west-2"
+  claude-sonnet:
+    model_id: "us.anthropic.claude-sonnet-4-20250514-v1:0"
+    region: "us-west-2"
+  gpt-oss:
+    model_id: "openai.gpt-oss-20b-1:0"
+    region: "us-west-2"
+  qwen:
+    model_id: "qwen.qwen3-32b-v1:0"
+    region: "us-west-2"
+
+# Nova Sonic models (via Bedrock bidirectional streaming)
+sonic_models:
+  nova-sonic:
+    model_id: "amazon.nova-2-sonic-v1:0"
+    region: "us-east-1"
+
+# Judge models (via Bedrock Converse API)
+judge_models:
+  claude-opus:
+    model_id: "global.anthropic.claude-opus-4-5-20251101-v1:0"
+    region: "us-east-1"
+  claude-sonnet:
+    model_id: "us.anthropic.claude-sonnet-4-20250514-v1:0"
+    region: "us-east-1"

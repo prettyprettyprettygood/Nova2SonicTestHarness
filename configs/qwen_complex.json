@@ -1,0 +1,24 @@
+{
+  "test_name": "qwen_complex_conversation",
+  "description": "Complex multi-turn conversation using Qwen as user simulator",
+  "sonic_model_id": "nova-sonic",
+  "sonic_system_prompt": "You are a knowledgeable assistant helping with complex queries. Provide detailed, accurate information.",
+  "sonic_inference_config": {
+    "max_tokens": 2048,
+    "temperature": 0.7,
+    "top_p": 0.9
+  },
+  "sonic_tool_config": null,
+  "user_model_id": "qwen",
+  "user_system_prompt": "You are a user with complex, multi-part questions. Ask detailed questions and follow up naturally.",
+  "user_max_tokens": 1024,
+  "user_temperature": 1.0,
+  "interaction_mode": "bedrock",
+  "scripted_messages": [],
+  "max_turns": 10,
+  "turn_delay": 0.1,
+  "log_audio": false,
+  "log_text": true,
+  "log_tools": true,
+  "output_directory": "results"
+}

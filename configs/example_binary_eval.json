@@ -1,0 +1,30 @@
+{
+  "test_name": "binary_eval_example",
+  "description": "Example using binary (YES/NO) evaluation with custom rubrics",
+  "sonic_model_id": "nova-sonic",
+  "sonic_system_prompt": "You are a helpful travel assistant. Help users find flights, check rewards balances, and answer travel-related questions.",
+  "user_model_id": "claude-haiku",
+  "user_system_prompt": "You are a customer who wants to book a flight to Paris and check your rewards balance. Be specific about your travel dates and preferences.",
+  "max_turns": 5,
+  "auto_evaluate": true,
+  "evaluation_criteria": {
+    "user_goal": "Book a flight to Paris and check rewards balance",
+    "assistant_objective": "Provide travel assistance using available tools",
+    "evaluation_aspects": [
+      "Goal Achievement",
+      "Tool Usage",
+      "Response Accuracy",
+      "Conversation Flow",
+      "Voice Formatting"
+    ],
+    "rubrics": {
+      "Goal Achievement": [
+        "Did the agent successfully help the user find flights to Paris?",
+        "Did the agent check the user's rewards balance when asked?"
+      ],
+      "Response Accuracy": [
+        "Were the assistant's responses accurate and relevant to travel queries?"
+      ]
+    }
+  }
+}

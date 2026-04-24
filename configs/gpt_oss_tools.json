@@ -1,0 +1,70 @@
+{
+  "test_name": "gpt_oss_with_tools",
+  "description": "Tool usage test using GPT-OSS as user simulator",
+  "sonic_model_id": "nova-sonic",
+  "sonic_system_prompt": "You are a helpful travel assistant. Use tools to provide accurate information about bookings and destinations.",
+  "sonic_inference_config": {
+    "max_tokens": 1024,
+    "temperature": 0.7,
+    "top_p": 0.9
+  },
+  "sonic_tool_config": {
+    "tools": [
+      {
+        "toolSpec": {
+          "name": "getBookingDetails",
+          "description": "Retrieve booking details for a customer",
+          "inputSchema": {
+            "json": {
+              "type": "object",
+              "properties": {
+                "booking_id": {
+                  "type": "string",
+                  "description": "The booking confirmation number"
+                }
+              },
+              "required": [
+                "booking_id"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "toolSpec": {
+          "name": "searchDestinations",
+          "description": "Search for travel destinations",
+          "inputSchema": {
+            "json": {
+              "type": "object",
+              "properties": {
+                "query": {
+                  "type": "string",
+                  "description": "Destination search query"
+                }
+              },
+              "required": [
+                "query"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "tool_choice": {
+      "auto": {}
+    }
+  },
+  "user_model_id": "gpt-oss",
+  "user_system_prompt": "You are a user asking about travel. Speak naturally and directly as yourself. Ask follow-up questions. IMPORTANT: Output only your actual words - do NOT say 'I would say' or 'Here's what I'd ask'. Speak directly.",
+  "user_max_tokens": 512,
+  "user_temperature": 1.0,
+  "interaction_mode": "bedrock",
+  "scripted_messages": [],
+  "max_turns": 8,
+  "turn_delay": 0,
+  "log_audio": true,
+  "log_text": true,
+  "log_tools": true,
+  "output_directory": "results"
+}

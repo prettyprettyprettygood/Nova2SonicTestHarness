@@ -1,0 +1,24 @@
+{
+  "test_name": "claude_haiku_basic_conversation",
+  "description": "Basic conversation using Claude Haiku as user simulator",
+  "sonic_model_id": "nova-sonic",
+  "sonic_system_prompt": "You are a helpful AI assistant. Be concise and friendly.",
+  "sonic_inference_config": {
+    "max_tokens": 1024,
+    "temperature": 0.7,
+    "top_p": 0.9
+  },
+  "sonic_tool_config": null,
+  "user_model_id": "claude-haiku",
+  "user_system_prompt": "You are a user having a conversation. Ask natural questions and respond naturally. Keep messages brief (1-2 sentences). IMPORTANT: Speak directly - do NOT say 'I would say' or add meta-commentary.",
+  "user_max_tokens": 512,
+  "user_temperature": 1.0,
+  "interaction_mode": "bedrock",
+  "scripted_messages": [],
+  "max_turns": 5,
+  "turn_delay": 0,
+  "log_audio": false,
+  "log_text": true,
+  "log_tools": true,
+  "output_directory": "results"
+}

@@ -1,0 +1,64 @@
+{
+  "test_name": "order_status_aggressive",
+  "description": "Angry customer demanding answers about a delayed order (ORD-2024-33100)",
+  "sonic_model_id": "nova-sonic",
+  "sonic_system_prompt": "You are a customer service phone agent for AcmeQuickShip, an online retail company.\n\n## Rules\n\n1. **Order Lookup**: Always use the lookupOrder tool when a customer provides an order ID. Never guess or make up order information.\n2. **Order Found**: If the tool returns order details, share only the relevant status, shipping, and delivery information.\n3. **Order Not Found**: If the tool returns an error or the order is not found, tell the customer you were unable to locate that order and ask them to send an email to help@acmequickship.com with their order details for further assistance.\n4. **Escalation**: If the customer insists on speaking with a team member, ask for their phone number and let them know a team member will reach out to them within 24 hours.\n\n## Response Style\n\n- Keep responses to 1-2 short sentences since you are a spoken phone agent.\n- Be professional, concise, and empathetic.\n- Never use markdown formatting, bullet points, or numbered lists in your spoken responses.",
+  "sonic_inference_config": {
+    "max_tokens": 1024,
+    "temperature": 0.7,
+    "top_p": 0.9
+  },
+  "sonic_tool_config": {
+    "tools": [
+      {
+        "toolSpec": {
+          "name": "lookupOrder",
+          "description": "Look up order details and status by order ID",
+          "inputSchema": {
+            "json": {
+              "type": "object",
+              "properties": {
+                "order_id": {
+                  "type": "string",
+                  "description": "The order ID, e.g. ORD-2024-78432"
+                }
+              },
+              "required": [
+                "order_id"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "tool_choice": {
+      "auto": {}
+    }
+  },
+  "user_model_id": "claude-haiku",
+  "user_system_prompt": "You are an angry customer calling AcmeQuickShip about order ORD-2024-33100. You paid 250 dollars for a standing desk that was supposed to arrive over a week ago. You are furious. Demand to know where your order is. If they mention a weather delay, say that is unacceptable and demand a refund or expedited shipping. Threaten to leave a bad review. Be rude but do not use profanity. Keep messages to 1-3 sentences. Do not generate markdown or meta-commentary.",
+  "user_max_tokens": 512,
+  "user_temperature": 1.0,
+  "interaction_mode": "bedrock",
+  "scripted_messages": [],
+  "max_turns": 5,
+  "turn_delay": 0,
+  "log_audio": true,
+  "log_text": true,
+  "log_tools": true,
+  "output_directory": "results",
+  "auto_evaluate": true,
+  "evaluation_criteria": {
+    "user_goal": "Get answers about delayed order ORD-2024-33100 and demand compensation or expedited shipping",
+    "assistant_objective": "De-escalate the angry customer, provide accurate delay information, show empathy, and offer concrete resolution options",
+    "evaluation_aspects": [
+      "Goal Achievement",
+      "Tool Usage",
+      "Response Accuracy",
+      "Conversation Flow",
+      "Voice Formatting"
+    ],
+    "rubrics": {}
+  },
+  "tool_registry_module": "custom_tools.order_status_tools"
+}

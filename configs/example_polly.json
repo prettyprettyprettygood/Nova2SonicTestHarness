@@ -1,0 +1,16 @@
+{
+  "test_name": "polly_audio_input_test",
+  "description": "Tests Polly TTS audio input mode with full conversation recording",
+  "sonic_model_id": "nova-sonic",
+  "sonic_voice_id": "matthew",
+  "sonic_system_prompt": "You are a helpful AI assistant.",
+  "input_mode": "polly",
+  "polly_voice_id": "Matthew",
+  "polly_engine": "neural",
+  "record_conversation": true,
+  "user_model_id": "claude-haiku",
+  "interaction_mode": "bedrock",
+  "max_turns": 3,
+  "log_audio": true,
+  "log_text": true
+}

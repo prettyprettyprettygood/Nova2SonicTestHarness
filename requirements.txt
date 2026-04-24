@@ -1,0 +1,26 @@
+# Live Interaction Mode Requirements
+# Self-contained - no parent dependencies needed
+
+# Core AWS
+boto3>=1.34.0
+
+# Configuration
+pyyaml>=6.0
+python-dotenv>=1.0.0
+
+# Results management
+pandas>=2.0.0
+
+# Nova Sonic streaming dependencies (must match sample code versions)
+rx>=3.2.0
+smithy-aws-core>=0.0.1
+aws_sdk_bedrock_runtime>=0.1.0,<0.2.0
+pytz
+
+# Optional: Only needed if using legacy Claude API mode (not Bedrock)
+# anthropic>=0.39.0
+
+# Note: pyaudio NOT needed - we use silent audio streaming (no mic/speaker)
+
+# Install with:
+# pip install -r requirements.txt
